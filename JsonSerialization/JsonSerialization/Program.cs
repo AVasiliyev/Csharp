@@ -42,6 +42,24 @@ namespace JsonSerialization
 
             var arr = new Item [] { new Item { Name = "Name1", Store = 1 }, new Item { Name = "Name2", Store = 2 } };
             var jsonFromList = JsonConvert.SerializeObject(arr);
+
+            dynamic request = new
+            {
+                publisherId = "tfs",
+                eventType = " workitem.created",
+                resourceVersion = "1.0",
+                consumerId = "webHooks",
+                consumerActionId = "httpRequest",
+                publisherInputs = new
+                {
+                    projectId = "test123",
+                },
+                consumerInputs = new
+                {
+                    url = "https://mydomain/api/ServiceHook/SaveWorkItem"
+                }
+            };
+            var jsonRequest = JsonConvert.SerializeObject(request);
         }
     }
 }
